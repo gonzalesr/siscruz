@@ -255,6 +255,19 @@
                     <group>
                         <field name="routing_id"/>
                     </group>
+                    <group string="Materia Prima" colspan="6">
+                        <field name="raw_material_lines" nolabel="1" >
+                            <tree string="Material" editable="bottom">
+                                <field name="name" widget="selection"/>
+                                <field name="kg" style="width:5px" />
+                                <field name="paper_processing" />
+                                <field name="total_load" />
+                                <field name="coil_width" /> 
+                                <field name="high_form" /> 
+                                <field name="armed" />
+                            </tree>
+                        </field>
+                    </group>
                 </xpath>
                 <xpath expr="//group[@string='Consumed Products']" position="after">
                 <!-- <xpath expr="//page[@string='Datos de Producción']/group" position="after"> -->

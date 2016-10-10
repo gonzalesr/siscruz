@@ -54,38 +54,10 @@ class Gramaje(models.Model):
     paper_type_id = fields.Many2one(comodel_name='mrp.type.paper',
         string='Tipo de papel', )
     
-# class PaperType(models.Model):
-#     _name = 'mrp.type.paper'
-#     _description = 'Tipo de papel'
-#     name = fields.Char(string='Tipo de papel')
-#      # Many2many inverse relation
-#     gramaje_ids = fields.Many2many(
-#         'mrp.gramaje',
-#         'mrp_type_paper_gramaje_rel',    # relation= (table name)
-#         'paper_type_id',                 # column1= ("this" field)
-#         'gramaje_id',                     # column2= ("other" field)
-#         string='gramaje',
-#         # Relational field attributes:
-#         auto_join=False,
-#         context="{}",
-#         domain="[]",
-#         ondelete='cascade',
-#         )
-
-# class Gramaje(models.Model):
-#     _name = 'mrp.gramaje'
-#     _description='Gramaje'
-
-#     name = fields.Char(string="Gramaje",
-#         help='Este campo se utiliza para establecer el gramaje')
-#     paper_type_ids = fields.Many2many(
-#         'mrp.type.paper',               # related= (model name)
-#         string='Tipo de papel',
-#         )
-
 class OriginalCopy(models.Model):
     _name= 'original.copy'
     _description= 'Especificaciones de Original y copias'
+
 
     Order_id = fields.Many2one('mrp.production', 'Orden de Produccion',required=1, ondelete='cascade')
     name= fields.Selection([('Original', 'Original'), ('Copia 1', 'Copia 1'), ('Copia 2', 'Copia 2'),('Copia 3','Copia 3'),
@@ -96,10 +68,11 @@ class OriginalCopy(models.Model):
     purpose = fields.Char(string='Destino')
     reverse = fields.Char(string='Reverso')
     # reverse_point = fields.Char(related='mrp.production.preimp_ids')
-   
+
 class Preimpreso(models.Model):
     _name = 'mrp.preimpreso'
     _description = 'Preimpreso'
+    
     name = fields.Char(string='Preimpreso')
      # Many2many inverse relation
     form_id = fields.Many2many('mrp.production',string='Preimpreso')
@@ -114,11 +87,12 @@ class MrpProduction(models.Model):
 
     @api.onchange('via')
     def _on_change_name(self): 
+
         if self.via == 0:
             lines =[]
             self.update({'vias_lines':lines})
         elif self.via == 1:
-            self.vias_lines = self.vias_lines.new({'name': 'Original' })
+            self.vias_lines = self.vias_lines.new({'name': 'Original','color_paper': 'Blanco','color_print':colorprint,'reverse':reverse})
         elif self.via == 2:
             self.vias_lines = self.vias_lines.new({'name': 'Original' })
             self.vias_lines += self.vias_lines.new({'name': 'Copia 1' })
@@ -405,3 +379,4 @@ class MrpProduction(models.Model):
                 When the production gets started then the status is set to 'In Production'.\n\
                 When the production is over, the status is set to 'Done'.")
 
+    raw_material_lines = fields.One2many(comodel_name='mrp.raw.material',inverse_name='ord_id',string='Materia Prima')
