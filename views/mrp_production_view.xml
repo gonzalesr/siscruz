@@ -24,6 +24,7 @@
                     <button name="button_design" states="draft" string="Confirm Design" class="oe_highlight"/>
                     <button name="button_ok_customer" states="diagramming" string="Confirm Customer" class="oe_highlight"/>
                 </xpath>
+
                 <button name="button_confirm" position="attributes">
                     <attribute name="groups">mrp.group_mrp_manager</attribute>                    
                     <attribute name="states">approved_customer</attribute>
@@ -116,7 +117,14 @@
                  <page string="Scheduled Products" position="attributes">
                     <attribute name='invisible'>1</attribute>
                 </page>
-               
+                <group string="Products to Consume" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </group>
+                <group string="Consumed Products" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </group>
+
+
 
                <!--             <xpath expr="//group[@groups='stock.group_locations']" position="before">             
                         <group string="formulario" >
@@ -282,12 +290,15 @@
                         <field name="inst_esp"/>
                     </group>
                 </xpath>
-                  <page string="Finished Products" position="attributes">
+                <page string="Finished Products" position="attributes">
                     <attribute name='groups'>mrp.group_mrp_manager</attribute>
                 </page>
                  <page string="Work Orders" position="attributes">
                     <attribute name='groups'>mrp.group_mrp_manager</attribute>
                 </page>
+                <button name="action_compute" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </button>
                
             </field>
         </record>
@@ -299,44 +310,10 @@
             <field name="arch" type="xml">
                 <field name="product_id" position="after">
                     <field name="partner" />
-                    <!-- <field name="sale_order" /> -->
-                </field>
-<!--                 <filter string="Product" position="before">
-                    <filter string="Customer" icon="terp-accessories-archiver"
-                        domain="[]" context="{'group_by':'partner'}" />
-                    <filter string="Sale Order" icon="terp-accessories-archiver"
-                        domain="[]" context="{'group_by':'sale_order'}" />
-                </filter> -->
+                </field>       
             </field>
         </record>
-       <!--  <record id="type_paper_view_form" model="ir.ui.view">
-            <field name="name">type_paper_form.view</field>
-            <field name="model">mrp.type.paper</field>
-            <field name="arch" type="xml">
-                <form string="Tipo de Papel">
-                    <field name="name" />
-                    <field name="gramaje_ids"/>
-                </form>
-            </field>
-        </record> -->
-       <!--  <record id="typework_view_tree" model="ir.ui.view">
-            <field name="name">typework.tree.view</field>
-            <field name="model">type.work</field>
-            <field name="arch" type="xml">
-                <tree string="tree_string" editable="bottom">
-                    <field name="name" />
-                </tree>
-            </field>
-        </record>
-        <record id="type_work_view_form" model="ir.ui.view">
-            <field name="name">type.work.form.view</field>
-            <field name="model">type.work</field>
-            <field name="arch" type="xml">
-                <form string="Tipo de Formulario">
-                    <field name="name" />
-                </form>
-            </field>
-        </record> -->
+       
 
     </data>
 </openerp>
