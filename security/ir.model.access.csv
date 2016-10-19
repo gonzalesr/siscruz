@@ -18,3 +18,4 @@ access_product_price_history_mrp_user,product.price.history mrp_user,product.mod
 access_horizontal_cut_attribute,horizontal_cut_attribute,model_horizontal_cut,base.group_sale_salesman_all_leads,1,1,1,1
 access_original_copy_attribute,original_copy_attribute,model_original_copy,base.group_sale_salesman_all_leads,1,1,1,1
 access_mrp_preimpreso_attribute,mrp_preimpreso_attribute,model_mrp_preimpreso,base.group_sale_salesman_all_leads,1,1,1,1
+access_mrp_raw_material_attribute,mrp_raw_material_attribute,model_mrp_raw_material,mrp.group_mrp_user,1,1,1,1

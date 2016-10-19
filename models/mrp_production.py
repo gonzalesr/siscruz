@@ -92,7 +92,7 @@ class MrpProduction(models.Model):
             lines =[]
             self.update({'vias_lines':lines})
         elif self.via == 1:
-            self.vias_lines = self.vias_lines.new({'name': 'Original','color_paper': 'Blanco','color_print':colorprint,'reverse':reverse})
+            self.vias_lines = self.vias_lines.new({'name': 'Original','color_paper': 'Blanco'})
         elif self.via == 2:
             self.vias_lines = self.vias_lines.new({'name': 'Original' })
             self.vias_lines += self.vias_lines.new({'name': 'Copia 1' })
@@ -356,7 +356,6 @@ class MrpProduction(models.Model):
     plaque = fields.Char(string='Placa')
     box = fields.Char(string='Cajas')
     cone = fields.Char(string='Conos')
-    pleca = fields.Char(string='Plecas')
     other = fields.Char(string='Otros')
     
     inst_esp = fields.Text(string='Instrucciones especiales')

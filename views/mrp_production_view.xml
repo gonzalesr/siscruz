@@ -26,7 +26,7 @@
                 </xpath>
 
                 <button name="button_confirm" position="attributes">
-                    <attribute name="groups">mrp.group_mrp_manager</attribute>                    
+                    <attribute name="groups">mrp.group_mrp_manager</attribute>
                     <attribute name="states">approved_customer</attribute>
                 </button>
                 <button name="button_cancel" position="attributes">
@@ -46,7 +46,7 @@
                     <attribute name="groups">mrp.group_mrp_manager</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_cancel']" position="attributes">
-                   
+
                 </xpath>
 
                 <xpath expr="//button[@name='action_cancel']" position="attributes">
@@ -56,7 +56,7 @@
                 <field name="state" position="attributes">
                     <attribute name="statusbar_visible">draft,diagramming,approved_customer,ready,in_production,done</attribute>
                 </field>
-               
+
                 <field name="name" position="attributes">
                     <attribute name="string">Solicitud de Trabajo</attribute>
                 </field>
@@ -112,9 +112,9 @@
                     <attribute name="invisible">1</attribute>
                 </field>
                 <page string="Extra Information" position="attributes">
-                    <attribute name='invisible'>1</attribute> 
+                    <attribute name='invisible'>1</attribute>
                 </page>
-                 <page string="Scheduled Products" position="attributes">
+                 <!-- <page string="Scheduled Products" position="attributes">
                     <attribute name='invisible'>1</attribute>
                 </page>
                 <group string="Products to Consume" position="attributes">
@@ -122,21 +122,7 @@
                 </group>
                 <group string="Consumed Products" position="attributes">
                     <attribute name='invisible'>1</attribute>
-                </group>
-
-
-
-               <!--             <xpath expr="//group[@groups='stock.group_locations']" position="before">             
-                        <group string="formulario" >
-                            <field name="via" />
-                            <separator string="Installation and Configuration Steps" colspan="4"/>
-                            <field name="width" />   
-                        </group>
-                        <group string="Diagramación">
-                            <field name="width" />  
-                        </group>  
-                    
-                    </xpath> -->
+                </group> -->
 
                 <xpath expr="//page[@string='Consumed Products']" position="before">
                     <page name="formulario" string="Formulario">
@@ -150,7 +136,7 @@
                                 </div> -->
                                 <div>
                                     <field name="width" class="oe_inline" style="width: 45%" nolabel="1"/>
-                                    <label for="unid_width" string=" " /> 
+                                    <label for="unid_width" string=" " />
                                     <field name="unid_width"  class="oe_inline" style="width: 30%" nolabel="1"/>
                                 </div>
                                 <label for="height" string="Alto"/>
@@ -159,7 +145,7 @@
                                     <label for="unid_high" string=" "/>
                                     <field name="unid_high"  class="oe_inline" style="width: 30%"/>
                                 </div>
-                                
+
                                 <field name="via"  attrs="{'invisible':[('type_work', '=', 'sobre')]}" />
                                 <separator string=" " colspan="4"/>
 
@@ -168,7 +154,7 @@
 
                                 <field name="horizontal_cut" domain="[('height_id','=',height)]"  attrs="{'invisible':[('troquel', '=', False)]}"/><!-- domain="[('high_id','=',high)]" -->
                                 <field name="vertical_cut" attrs="{'invisible':[('troquel', '=', False)]}" />
-                                <field name="vertical_cut_type" attrs="{'invisible':[('vertical_cut', '=', False)]}" /> 
+                                <field name="vertical_cut_type" attrs="{'invisible':[('vertical_cut', '=', False)]}" />
                                 <separator string="" colspan="4"/>
                                 <field name="reel" attrs="{'invisible':[('type_work', '!=', 'continuo')], 'required': [('type_work', '=', 'continuo')]}"/>
                                 <field name="catch" attrs="{'invisible':[('type_work', '!=', 'continuo')], 'required': [('type_work', '=', 'continuo')]}" />
@@ -185,7 +171,7 @@
                                 <field name="end_number" attrs="{'invisible':[('numeration', '=', False)]}" />
                                 <field name="color_number" attrs="{'invisible':[('numeration', '=', False)]}" />
                                 <separator string="" colspan="4"/>
-                                <field name="binding" attrs="{'invisible':[('type_work', '!=', 'pliego')]}" /> 
+                                <field name="binding" attrs="{'invisible':[('type_work', '!=', 'pliego')]}" />
                                 <separator string="" colspan="4"/>
 
                                 <field name="box_cant" attrs="{'invisible':[('type_work', '=', 'sobre')]}"/>
@@ -193,24 +179,24 @@
                                 <label for="block_cant_sel" string="Cantidad por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
                                 <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}" >
                                     <field name="block_cant_sel" class="oe_inline" style="width: 45%"/>
-                                    <label for="block_cant" string="  " /> 
+                                    <label for="block_cant" string="  " />
                                     <field name="block_cant"  class="oe_inline" style="width: 30%"/>
                                 </div>
 
                                 <label for="block_set_sel" string="Cantidad juegos por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
                                 <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}" >
                                     <field name="block_set_sel" class="oe_inline" style="width: 45%"/>
-                                    <label for="block_set" string="  " /> 
+                                    <label for="block_set" string="  " />
                                     <field name="block_set"  class="oe_inline" style="width: 30%"/>
                                 </div>
 
                                 <label for="sheet_set_sel" string="Cantidad de hojas por" attrs="{'invisible':[('type_work', '!=', 'pliego')]}"/>
                                 <div attrs="{'invisible':[('type_work', '!=', 'pliego')]}">
                                     <field name="sheet_set_sel" class="oe_inline" style="width: 45%"/>
-                                    <label for="sheet_set" string="  " /> 
+                                    <label for="sheet_set" string="  " />
                                     <field name="sheet_set"  class="oe_inline" style="width: 30%"/>
                                 </div>
-                                     
+
                             </group>
                             <group string="Detalle de Vias" attrs="{'invisible':[('type_work', '=', 'sobre')]}"  >
                                 <field name="vias_lines" nolabel="1" >
@@ -220,34 +206,34 @@
                                         <field name="color_print" />
                                         <field name="color_paper" />
                                         <field name="purpose" />
-                                        <field name="reverse" /> 
+                                        <field name="reverse" />
                                         <!-- attrs="{'readonly':[('mrp.production.preimp_ids', '=', 'Reverso')]}"/> -->
                                         <!-- <field name="via_id" /> -->
                                     </tree>
                                 </field>
                             </group>
-                            
-                            <group string="Otros Detalles" > 
-                               
+
+                            <group string="Otros Detalles" >
+
                                 <field name="note"/>
                                 <field name="costing"/>
                                 <field name="price_for"/>
                                 <field name="unit_price"/>
                                 <field name="total_price"/>
-                                <field name="metho_pay"/> 
-                            </group> 
+                                <field name="metho_pay"/>
+                            </group>
                         </group>
                     </page>
                     <page name="Diagramacion" string="Diagramación" groups="mrp.group_mrp_manager">
                         <group>
                             <group string="Fecha ingreso">
-                                <field name="date_entry" />  
-                                <field name="date_entry_s" />  
+                                <field name="date_entry" />
+                                <field name="date_entry_s" />
                             </group>
-                            <group string="Fecha entrega">                                
+                            <group string="Fecha entrega">
                                 <field name="date_delivery" />
                                 <field name="date_delivery_s" />
-                            </group>   
+                            </group>
                         </group>
                     </page>
                 </xpath>
@@ -268,10 +254,14 @@
                             <tree string="Material" editable="bottom">
                                 <field name="name" widget="selection"/>
                                 <field name="kg" style="width:5px" />
+                                <field name="percentage"/>
+                                <field name="demasia"/>
+                                <field name="total"/>
                                 <field name="paper_processing" />
                                 <field name="total_load" />
-                                <field name="coil_width" /> 
-                                <field name="high_form" /> 
+                                <field name="coil_width" />
+                                <field name="high_form" />
+                                <field name="unid_high_form" />
                                 <field name="armed" />
                             </tree>
                         </field>
@@ -283,7 +273,6 @@
                         <field name="plaque"/>
                         <field name="box"/>
                         <field name="cone"/>
-                        <field name="pleca"/>
                     </group>
                     <group>
                         <field name="other"/>
@@ -299,7 +288,7 @@
                 <button name="action_compute" position="attributes">
                     <attribute name='invisible'>1</attribute>
                 </button>
-               
+
             </field>
         </record>
 
@@ -310,10 +299,10 @@
             <field name="arch" type="xml">
                 <field name="product_id" position="after">
                     <field name="partner" />
-                </field>       
+                </field>
             </field>
         </record>
-       
+
 
     </data>
 </openerp>
