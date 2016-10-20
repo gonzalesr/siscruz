@@ -168,33 +168,28 @@ class MrpProduction(models.Model):
                 'message': 'Debe seleccionar el tipo de trabajo'}
                 }
     @api.one
-    @api.constrains('type_work','width','height')
+    @api.constrains('type_work','width','height','cod_partner_product','nit_ci','street','phone')
     def _check_type_work_size(self):
-        # if len(self.type_work) == 0:
-        #     raise ValidationError('Must have 10 chars!')
-        # from pprint import pprint as pp
-       # import pdb; pdb.set_trace()
-       # if self.type_work == '':
+        cad = ''
         if self.type_work == False:
-            raise ValidationError('Debe seleccionar el tipo de trabajo')
-            #raise Warning(_('Debe seleccionar el tipo de trabajo'))
-            #raise except_orm('FOO','Lorem ipsum dolor sit amet')
-            # return {
-            # 'warning': {
-            #     'title': 'Advertencia!',
-            #     'message': 'Debe seleccionar el tipo de trabajo'}
-            #     }
-        elif self.width == 0:
-            raise ValidationError('Debe ingresar el ancho del formulario')
-        elif self.height == 0:
-            raise ValidationError('Debe ingresar el alto del formulario')
+            cad = 'Debe seleccionar el tipo de trabajo\n'
+        if self.width == 0:
+            cad += 'Debe ingresar el ancho del formulario\n'
+        if self.height == 0:
+            cad += 'Debe ingresar el alto del formulario'
+        print str(len(self.cod_partner_product)) + 'holaaaaaaaaaaaa'
+        if len(self.cod_partner_product) == 0:
+            cad += 'Debe ingresar el código en el dato maestro del cliente\n'
+        if len(self.nit_ci) == 0:
+            cad += 'Debe ingresar el NIT en el dato maestro del cliente\n'
+        if len(self.street) == 0:
+            cad += 'Debe ingresar la dirección en el dato maestro del cliente\n'
+        if len(self.phone) == 0:
+            cad += 'Debe ingresar el teléfono en el dato maestro del cliente\n'
 
-    # def action_design(self):
-    #     """ Approves the design of the production order.
-    #     @return: Newly generated Shipment Id.
-    #     """
-    #     self.write({'state': 'diagramming'})  
-    #     return 0
+
+        if len(cad) >0:
+            raise ValidationError(cad)
 
     def action_ok_customer(self):
         """ Approves customer production order.
@@ -236,19 +231,15 @@ class MrpProduction(models.Model):
         comodel_name='res.partner', string='Empresa', store=True,
         required=True)
 
-    cod_partner_product = fields.Char(string='Código',related='partner.codigo',store=True,
-        required=True)
-    nit_ci = fields.Char(string='NIT/CI', related='partner.nit',store=True,
-        required=True)
+    cod_partner_product = fields.Char(string='Código',related='partner.codigo',store=True)
+    nit_ci = fields.Char(string='NIT/CI', related='partner.nit',store=True)
 
     partner_child_ids = fields.Many2one(
         comodel_name='res.partner', string='Responsable Pedido',
         required=True)
 
-    street = fields.Char(string='Dirección', related='partner.street',store=True,
-        required=True)
-    phone = fields.Char(string='Teléfono', related= 'partner.phone',store=True,
-        required=True)
+    street = fields.Char(string='Dirección', related='partner.street',store=True)
+    phone = fields.Char(string='Teléfono', related= 'partner.phone',store=True)
     date_order = fields.Date('Fecha pedido', default= fields.date.today())
     date_design = fields.Date('Fecha aprobado por cliente')  
     date_commit = fields.Date('Fecha estimada entrega')

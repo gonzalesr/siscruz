@@ -20,8 +20,8 @@ class RawMaterial(models.Model):
     name= fields.Selection([('Bond', 'Bond'), ('Termico', 'Térmico'), ('Q-CB', 'Q - CB'),('Q-CF','Q-CF'),
         ('Q-CFB', 'Q-CFB')],
         string='Papel')
-    kg = fields.Float(
-        string='KG',digits=(6,2),required=False)
+    kg = fields.Integer(
+        string='KG',required=False)
     percentage = fields.Float(
         string='% demasia',digits=(6,2),required=False)
     demasia = fields.Float(
